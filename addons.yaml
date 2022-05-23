@@ -1,5 +1,5 @@
 microk8s-addons:
-  description: "Jupyterhub addon"
+  description: "JupyteHhub addon"
   addons:
     - name: "jupyterhub"
       description: "Jupyterhub addon for microk8s"
