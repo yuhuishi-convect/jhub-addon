@@ -32,7 +32,7 @@ microk8s enable jupyterhub
 microk8s enable jupyterhub -- -f /path/to/values.yaml
 
 # to view the ip address to for the jupyterhub service
-microk8s kubectl get svc -n jhub
+microk8s kubectl get svc -n jhub -l app=jupyterhub,component=proxy-public
 
 # disable the addon
 microk8s disable jupyterhub
