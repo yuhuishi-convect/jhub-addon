@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+source $SNAP/actions/common/utils.sh
+
+NAMESPACE_JHUB="jhub"
+
+KUBECTL="$SNAP/kubectl --kubeconfig=${SNAP_DATA}/credentials/client.config"
+HELM="$SNAP_DATA/bin/helm3 --kubeconfig=$SNAP_DATA/credentials/client.config"
+KUBECTL_DELETE_ARGS="--wait=true --timeout=180s --ignore-not-found=true"
+
+echo "Disabling JupyterHub"
+
+$HELM delete jhub -n $NAMESPACE_JHUB
+
+$KUBECTL delete $KUBECTL_DELETE_ARGS namespace "$NAMESPACE_JHUB" > /dev/null 2>&1 || true
+
+echo "JupyterHub disabled"
